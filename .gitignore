@@ -1,1 +1,11 @@
+# IDE
 .idea/
+
+# Gradle
+.gradle/
+
+# Zsh
+.gradletasknamecache
+
+# Gitlab pages for running as container (locally)
+_site/

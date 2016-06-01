@@ -1,0 +1,12 @@
+import static org.stackwork.gradle.docker.ModuleType.*
+
+plugins {
+  id 'org.stackwork' version '0.6.0'
+}
+
+version = '1.0'
+
+stackwork {
+  imageName = 'qkrijger/github-pages'
+  moduleType = DELIVERABLE_IMAGE
+}
