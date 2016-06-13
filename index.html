@@ -1,18 +1,157 @@
-<html>
-<head>
-    <link rel="stylesheet" href="https://cdn.rawgit.com/hakimel/reveal.js/3.3.0/css/reveal.css">
-    <link rel="stylesheet" href="https://cdn.rawgit.com/hakimel/reveal.js/3.3.0/css/theme/white.css">
-</head>
-<body>
-<div class="reveal">
-    <div class="slides">
-        <section>Slide 1</section>
-        <section>Slide 2</section>
+---
+title: Git Notes
+layout: revealjs-html-slides
+---
+<section>
+    <header><h1>Git session - agenda</h1></header>
+    <ul>
+      <li>Git basics and general info</li>
+      <li>Interesting stuff for the team - agreements</li>
+      <li>Q. Questions? A. Any time.</li>
+    </ul>
+</section>
+
+
+<section>
+  <section>
+    <header><h1>My case for the CLI</h1></header>
+    <ul>
+      <li class="fragment">Really hard to f# anything up. Great!</li>
+      <li class="fragment">But this can be quite complex.</li>
+      <li class="fragment">With many git commands & options.</li>
+      <li class="fragment">We get fine-grained control.</li>
+      <li class="fragment">So, first learn the details, only than abstract them away.</li>
+      <li class="fragment"><code>git fetch</code> + <code>git tree</code> = knowing what will happen beforehand.</li>
+      <li class="fragment">ps. git aliases are nice.</li>
+      <li class="fragment">ps2. zsh is very nice.</li>
+    </ul>
+  </section>
+  <section>
+    <header><h1>Git vs. SVN: a distributed nature</h1></header>
+    <ul>
+      <li>Git data stored locally (.git)</li>
+      <li>Origin: a simple swarm member with a special role</li>
+      <li>Forking & pull requests, upstream repositories</li>
+    </ul>
+    <p style="font-style: italic">"All animals are equal, but some are more equal than other (G. Orwell, 1945)"</p>
+  </section>
+  <section>
+    <header><h1>Git branches</h1></header>
+    <ul>
+      <li class="fragment">(Permanent) deployment branches (master, ~develop)</li>
+      <li class="fragment">Feature branches</li>
+      <li class="fragment">Dependent features - branch of branch</li>
+      <li class="fragment">Strong advice: keep your feature branch up to date (with rebase)</li>
+      <li class="fragment">Advice: delete merged branches, remotely as well (and pull --purge)</li>
+    </ul>
+  </section>
+  <section>
+    <header><h1>Gitlab</h1></header>
+    <p>A very useful UI for origin. Did you push? The answer is there.</p>
+  </section>
+</section>
+
+
+<section>
+  <section>
+    <header><h1>Be critical</h1></header>
+    <main>
+      <ul>
+        <li class="fragment">Take care of your projects history. Code is a pet.</li>
+        <li class="fragment">Do this:<ol>
+          <li>Locally</li>
+          <li>On your feature branch</li>
+          <li>End goal: on master</li>
+        </ol></li>
+        <li class="fragment">Make small functional commits</li>
+        <li class="fragment">Possibly use the commit description for more in-depth comments</li>
+        <li class="fragment"><code>git commit --amend</code></li>
+        <li class="fragment"><code>git rebase --interactive</code> (demo after next chapter)</li>
+      </ul>
+    </main>
+  </section>
+</section>
+
+
+
+<section>
+  <section>
+    <header><h1>The use of rebase</h1></header>
+  </section>
+  <section>
+    <header><h1>What merging looks like</h1></header>
+    <pre><code data-trim style="font-size:small;line-height:normal">
+      | |_|_|_|_|_|/
+      |/| | | | | |
+      * | | | | | | db56e45  DBZEXP-843: Adding ...
+      | |_|_|_|_|/
+      |/| | | | |
+      * | | | | | 9ac74e7    DBZEXP-930: Sorted ...
+      * | | | | | 2a79226    DBZEXP-927: Swapped ...
+      * | | | | | 3af8097    DBZEXP-930: Sorted ...
+      | |_|_|_|/
+      |/| | | |
+      * | | | | 044fb82    DBZEXP-929: Tekstuele ...
+      | |_|_|/
+      |/| | |
+      * | | | 6d1f452  DBZEXP-833 Textual ...
+      | |_|/
+      |/| |
+      * | | 743d1ec  DBZEXP-665: Fixed ...
+      | | | * f0efe8d  (origin/feature-prefill, feature-prefill) Merged latest Dev changes into feature branch ...
+      | | |/
+      | |/|
+      | * | 88f176b  Changed ...
+      | * | fddb763  Reverted ...
+      | * |   2fb3512  Merge remote-tracking branch 'origin/feature-prefill' into feature-prefill
+      | |\ \
+      | | * | c56c1bf  DBZEXP-665: Removed ...
+      | * | |   46dc09f    Merge remote-tracking branch 'origin/feature-prefill' into feature-prefill
+      | |\ \ \
+      | | |/ /
+      | | * | 3c15e99  Changed ...
+      | * | | 7e29718  Invulhulpen ...
+      | |/ /
+      | * | 79c01b4  DBZEXP-772: Refactored ...
+      | * | 024c9cb  DBZEXP-651: ...
+      |/ /
+    </code></pre>
+  </section>
+  <section>
+    <header><h1>A single merge pull</h1></header>
+    <img style="width:50%" src="images/pull-rebase-forgotten.png"/>
+    <div class="fragment">
+      <ul>
+        <li>What happens in case of conflicting changes?</li>
+        <li>And who is boss? What is truth?</li>
+      </ul>
+      <footer>
+        <p>This and some of the following images were taken from a blog by
+        <a href="https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa#.bspfr378m">
+          Christophe Porteneuve</a></p>
+      </footer>
     </div>
-</div>
-<script src="https://cdn.rawgit.com/hakimel/reveal.js/3.3.0/js/reveal.js"></script>
-<script>
-    Reveal.initialize();
-</script>
-</body>
-</html>
+  </section>
+  <section>
+    <header><h1>A single rebase pull</h1></header>
+    <img style="width:50%" src="images/pull-rebase.png"/>
+    <p>=> globally set <code>pull.rebase = true</code></p>
+  </section>
+  <section>
+    <header><h1>What if you locally have a functional merge?</h1></header>
+    <img style="width:50%" src="images/preserve-forgotten.png"/>
+  </section>
+  <section>
+    <header><h1>Preserve: a sensible option</h1></header>
+    <img style="width:50%" src="images/preserve.png"/>
+    <p>=> globally set <code>pull.rebase = preserve</code></p>
+    <p>Action: make sure your Git version is up to date</p>
+  </section>
+</section>
+
+<section>
+  <header><h1>Demo time</h1></header>
+  <p>Keeping code up to date: <code>git rebase</code></p>
+  <p>Get your history in check: <code>git rebase --interactive</code></p>
+  <h2 class="fragment">The catch: history changes => force pushes</h2>
+</section>

@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN gem install github-pages
 
+COPY run.sh /
 WORKDIR /blog
 EXPOSE 4000
-CMD ["jekyll", "serve", "--host", "0.0.0.0"]
+CMD ["bash", "/run.sh"]
